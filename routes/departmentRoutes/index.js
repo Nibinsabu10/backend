@@ -1,5 +1,5 @@
 import express from "express";
-import Department from "../../db/models/departmentSchema.js";
+import Department from "../../db/model/departmentSchema.js";
 
 const router = express.Router();
 
