@@ -24,7 +24,20 @@ router.post("/signup", async (req, res) => {
   return res.status(201).json({ message: "Signup successfull" });
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
+  const body = { ...req.body };
+
+  const doctor = await Doctor.findOne({ username: body.username });
+
+  if (!doctor) {
+    return res.status(403).json({ message: "username or password incorrect" });
+  }
+
+  const isMatching = await bcrypt.compare(body.password, doctor.password);
+
+  if (!isMatching) {
+    return res.status(403).json({ message: "username or password incorrect" });
+  }
   return res.status(200).json({ message: "Login successfull" });
 });
 
