@@ -7,13 +7,6 @@ const userSchema = Schema({
     trim: true,
   },
 
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
-
   image: {
     type: String,
     required: true,
